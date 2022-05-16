@@ -4,7 +4,7 @@ from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 
 for filename in os.listdir("./"):
-  if filename != 'krpcSongScript.py':
+  if filename != 'krpcSongScript.py' and filename != '.git':
     prs = Presentation(filename)
     for slide in prs.slides:
       slide.background.fill.solid()
