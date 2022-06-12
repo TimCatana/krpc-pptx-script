@@ -105,13 +105,14 @@ def main():
 
   print("\nIMPORTANT: Please make sure that no instances of powerpoint are open before you begin!!!\n")
 
+  fontSize = fontSizeInput()
+  fontFamily = fontFamilyInput()
+  fontBold = yesOrNoInput("bold? y or n: ")
+  fontItalic = yesOrNoInput("italic? y or n: ")
+
   for filename in os.listdir("./"):
 
     if (filename[-4:] == ".ppt" or filename[-5:] == ".pptx"):
-      fontSize = fontSizeInput()
-      fontFamily = fontFamilyInput()
-      fontBold = yesOrNoInput("bold? y or n: ")
-      fontItalic = yesOrNoInput("italic? y or n: ")
 
       try:
         prs = Presentation(filename)
