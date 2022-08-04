@@ -3,8 +3,7 @@ import collections.abc
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 from pptx.enum.text import PP_ALIGN
-
-
+from pptx.util import Cm
 
 # Edits the text of the slide given the inputs
 # 
@@ -27,7 +26,6 @@ def editText(filename, shape, textValuesDict):
   for p in shape.text_frame.paragraphs:
     p.font.color.rgb = RGBColor(255, 255, 255)
     p.alignment = PP_ALIGN.CENTER
-    #TODO need to make text frame width and height of slide so that it centers fully
 
 # Edits other shapes on the slide
 # Edits text using desired values
@@ -35,11 +33,19 @@ def editText(filename, shape, textValuesDict):
 def editShape(filename, shape, textValuesDict):
   if shape.shape_type == MSO_SHAPE_TYPE.TEXT_BOX:
     if shape.has_text_frame:
+      shape.width = Cm(33.867)
+      shape.height = Cm(19.05)
+      shape.left = Cm(0)
+      shape.top = Cm(0)
       editText(filename, shape, textValuesDict)
           
-  elif shape.shape_type == MSO_SHAPE_TYPE.PLACEHOLDER:
+  if shape.shape_type == MSO_SHAPE_TYPE.PLACEHOLDER:
     if shape.has_text_frame:
+      shape.width = Cm(33.867)
+      shape.height = Cm(19.05)
+      shape.left = Cm(0)
+      shape.top = Cm(0)
       editText(filename, shape, textValuesDict)
-
-  else :
+      
+  else :  
     shape._element.getparent().remove(shape._element)

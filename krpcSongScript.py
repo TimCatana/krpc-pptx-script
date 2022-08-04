@@ -4,6 +4,7 @@ import collections
 import collections.abc
 from pptx import Presentation
 from pptx.dml.color import RGBColor
+from pptx.util import Cm
 
 from functions.inputs import getDesiredInputs
 from functions.readCSVFile import readCSVFile
@@ -31,6 +32,9 @@ def main():
         print("WARNING: Failed to open powerpoint file: " + filename + " continuing...") 
         continue
       
+      prs.slide_width = Cm(33.867)
+      prs.slide_height = Cm(19.05)
+
       for slide in prs.slides:
         slide.background.fill.solid()
         slide.background.fill.fore_color.rgb = RGBColor(0, 0, 0)
