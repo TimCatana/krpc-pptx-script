@@ -5,10 +5,26 @@ from pptx.enum.shapes import MSO_SHAPE_TYPE
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Cm
 
+# 
+#
+# TODO - theres probably a built in string function for this
+def editTextFormat(filename, shape):
+  newLines = 1
+  for char in shape.text:
+    print(repr(char))
+    if(char == "\n" or char == "\x0b"):
+      if(newLines % 2 == 0):
+        print("edit char")
+        newLines += 1
+      else:
+        newLines += 1
+        print("dont edit char")
+  
+
 # Edits the text of the slide given the inputs
 # 
 #
-def editText(filename, shape, textValuesDict):
+def editTextStyle(filename, shape, textValuesDict):
   try:
     shape.text_frame.fit_text(font_family=textValuesDict['fontName'])
   except Exception as e:
@@ -37,7 +53,8 @@ def editShape(filename, shape, textValuesDict):
       shape.height = Cm(19.05)
       shape.left = Cm(0)
       shape.top = Cm(0)
-      editText(filename, shape, textValuesDict)
+      editTextStyle(filename, shape, textValuesDict)
+      editTextFormat(filename, shape)
           
   if shape.shape_type == MSO_SHAPE_TYPE.PLACEHOLDER:
     if shape.has_text_frame:
@@ -45,7 +62,8 @@ def editShape(filename, shape, textValuesDict):
       shape.height = Cm(19.05)
       shape.left = Cm(0)
       shape.top = Cm(0)
-      editText(filename, shape, textValuesDict)
+      editTextStyle(filename, shape, textValuesDict)
+      editTextFormat(filename, shape)
       
   else :  
     shape._element.getparent().remove(shape._element)
