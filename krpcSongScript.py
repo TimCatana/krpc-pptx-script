@@ -11,6 +11,8 @@ from functions.readCSVFile import readCSVFile
 from functions.slideEdits import editShape
 
 def main():
+  input("Before beginning please ensure all instances of powerpoint are closed and that your input.csv file is in the correct form (example: 21,Calibri,y,n ). Press Enter to begin... ") 
+
   try:
     os.mkdir('edited')
     print("NOTICE: edited directory created, continuing...")
