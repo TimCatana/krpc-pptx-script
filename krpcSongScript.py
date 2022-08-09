@@ -11,15 +11,13 @@ from functions.readCSVFile import readCSVFile
 from functions.slideEdits import editShape
 
 def main():
-  input("Before beginning please ensure all instances of powerpoint are closed and that your input.csv file is in the correct form (example: 21,Calibri,y,n ). Press Enter to begin... ") 
+  input("IMPORTANT Before beginning please ensure all instances of powerpoint are closed and that your input.csv file is in the correct form (example: 21,Calibri,y,n ). Press Enter to begin... ") 
 
   try:
     os.mkdir('edited')
     print("NOTICE: edited directory created, continuing...")
   except OSError:
     print("NOTICE: edited directory already exists, continuing...")
-
-  print("\nIMPORTANT: Please make sure that no instances of powerpoint are open before you begin!!!\n")
 
   textValuesDict = readCSVFile('input.csv')
 
