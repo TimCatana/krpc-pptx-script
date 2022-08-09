@@ -5,21 +5,34 @@ from pptx.enum.shapes import MSO_SHAPE_TYPE
 from pptx.enum.text import PP_ALIGN
 from pptx.util import Cm
 
-# 
+# Takes the text and puts it on 2 lines 
 #
-# TODO - theres probably a built in string function for this
+# 
 def editTextFormat(filename, shape):
-  newLines = 1
-  for char in shape.text:
-    print(repr(char))
-    if(char == "\n" or char == "\x0b"):
-      if(newLines % 2 == 0):
-        print("edit char")
-        newLines += 1
-      else:
-        newLines += 1
-        print("dont edit char")
-  
+  lines = shape.text.splitlines(False)
+
+  for line in lines:
+    if(line == '' or line.isspace() == True):
+      lines.remove(line)
+    # TODO - get rid of whitespace on the end of the strings, strip() was not working when I tried implementing it
+
+  # Leave these here for future testing purposes
+  # print(lines)
+  # print(len(lines))
+
+  addNewLine = len(lines) / 2 # This makes it so that all text is made to be 2 lines. See the for loop below
+  editedText = ''
+
+  for i in range(len(lines)):
+    lines[i].rstrip()
+    if(i == 0):
+      editedText = lines[i] + ' '
+    elif(i % addNewLine == 0):
+      editedText = editedText + '\n' + lines[i] + ' '
+    else:
+      editedText = editedText + lines[i] + ' '
+
+  shape.text = editedText
 
 # Edits the text of the slide given the inputs
 # 
@@ -53,8 +66,8 @@ def editShape(filename, shape, textValuesDict):
       shape.height = Cm(19.05)
       shape.left = Cm(0)
       shape.top = Cm(0)
-      editTextStyle(filename, shape, textValuesDict)
       editTextFormat(filename, shape)
+      editTextStyle(filename, shape, textValuesDict)
           
   if shape.shape_type == MSO_SHAPE_TYPE.PLACEHOLDER:
     if shape.has_text_frame:
@@ -62,8 +75,8 @@ def editShape(filename, shape, textValuesDict):
       shape.height = Cm(19.05)
       shape.left = Cm(0)
       shape.top = Cm(0)
-      editTextStyle(filename, shape, textValuesDict)
       editTextFormat(filename, shape)
+      editTextStyle(filename, shape, textValuesDict)
       
   else :  
     shape._element.getparent().remove(shape._element)
