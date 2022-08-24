@@ -39,7 +39,6 @@ def readCSVFile(filename):
         print("Exiting Program...")
         exit()
 
-
       textValuesDict['fontSize'] = row[0]
       textValuesDict['fontName'] = row[1]
 
