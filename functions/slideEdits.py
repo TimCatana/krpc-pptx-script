@@ -2,7 +2,7 @@ import collections
 import collections.abc
 from pptx.dml.color import RGBColor
 from pptx.enum.shapes import MSO_SHAPE_TYPE
-from pptx.enum.text import PP_ALIGN
+from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.util import Cm
 from pptx.util import Pt
 
@@ -79,12 +79,13 @@ def editCharacterFormatting(filename, shape, textValuesDict):
 
 # Applies formatting to the paragraphs of the shapes with text_frames in the slide
 # Should not change character formatting other than text color
+# NOTE: There should only be one paragraph in the text frame at this point
 def editParagraphFormatting(filename, shape, textValuesDict):
   text_frame = shape.text_frame
-  
-  for p in text_frame.paragraphs:
-    p.font.color.rgb = RGBColor(255, 255, 255)
-    p.alignment = PP_ALIGN.CENTER
+  text_frame.vertical_anchor = MSO_ANCHOR.MIDDLE
+  p = text_frame.paragraphs[0]
+  p.font.color.rgb = RGBColor(255, 255, 255)
+  p.alignment = PP_ALIGN.CENTER
 
 # Edits other shapes on the slide
 # Edits text using desired values
