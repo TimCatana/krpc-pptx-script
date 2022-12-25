@@ -1,5 +1,8 @@
 edited/
+
 *.ppt
 *.pptx
+
+!test_slides/*
 
 helpers/__pycache__
