@@ -6,21 +6,26 @@ from pptx import Presentation
 from pptx.dml.color import RGBColor
 from pptx.util import Cm
 
-from functions.inputs import getDesiredInputs
-from functions.readCSVFile import readCSVFile
-from functions.slideEdits import editShape
+from helpers.inputs import getDesiredInputs
+from helpers.readCSVFile import readCSVFile
+from helpers.slideEdits import editShape
 
 def main():
+
+  # Notify user to close all powerpoint slides
   input("IMPORTANT Before beginning please ensure all instances of powerpoint are closed and that your input.csv file is in the correct form (example: 21,Calibri,y,n ). Press Enter to begin... ") 
 
+  # Make the edited directory if it doesn't exist
   try:
     os.mkdir('edited')
     print("NOTICE: edited directory created, continuing...")
   except OSError:
     print("NOTICE: edited directory already exists, continuing...")
 
+  # Read the csv file and get the contents
   textValuesDict = readCSVFile('input.csv')
 
+  # Get the powerpoint slides in the root directory and so the edit for each one
   for filename in os.listdir("./"):
 
     if (filename[-4:] == ".ppt" or filename[-5:] == ".pptx"):
@@ -29,7 +34,7 @@ def main():
         prs = Presentation(filename)
       except BaseException as e:
         print("ERROR: " + str(e))
-        print("WARNING: Failed to open powerpoint file: " + filename + " continuing...") 
+        print("WARNING: Failed to open powerpoint file: " + filename + " continuing...")
         continue
       
       prs.slide_width = Cm(33.867)
