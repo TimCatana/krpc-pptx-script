@@ -32,33 +32,38 @@ def editText(filename, shape):
         editedText = ''
 
         for i in range(len(lines)):
-            lines[i].rstrip()
+            curLine = lines[i].rstrip()
+
             if (i == 0):
-                print("i == 0 lines: " +
-                      str(lines[i]) + "edited text: " + str(editedText) + "\n\n")
+                # print("i == 0 lines: " +
+                #       str(lines[i]) + "edited text: " + str(editedText) + "\n\n")
 
-                editedText = lines[i]
+                editedText = curLine
             elif (i % addNewLine == 0):
-                print("i mod line == 0 lines: " +
-                      str(lines[i]) + "edited text: " + str(editedText) + "\n\n")
+                # print("i mod line == 0 lines: " +
+                #       str(curLine) + "edited text: " + str(editedText) + "\n\n")
 
                 if (editedText[-1] in [".", ",", "!", "?", ":", ";"]):
-                    editedText = editedText[:-1] + '\n' + lines[i]
+                    editedText = editedText[:-1] + '\n' + curLine
                 else:
-                    editedText = editedText + '\n' + lines[i]
+                    editedText = editedText + '\n' + curLine
             else:
-                print("else == 0 lines: " +
-                      str(lines[i]) + "edited text: " + str(editedText) + "\n\n")
+                # print("else == 0 lines: " +
+                #       str(curLine) + "edited text: " + str(editedText) + "\n\n")
+
                 if (editedText[-1] in [".", ",", "!", "?", ":", ";"]):
-                    if (lines[i][-1] in [".", ",", "!", "?", ":", ";"]):
-                        editedText = editedText[:-1] + ", " + (lines[i][:-1]).lower()
+                    if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
+                        editedText = editedText[:-1] + \
+                            ", " + (curLine[:-1]).lower()
                     else:
-                        editedText = editedText[:-1] + ", " + (lines[i]).lower()
+                        editedText = editedText[:-1] + \
+                            ", " + (curLine).lower()
                 else:
-                    if (lines[i][-1] in [".", ",", "!", "?", ":", ";"]):
-                        editedText = editedText + ", " + (lines[i][:-1]).lower()
+                    if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
+                        editedText = editedText + ", " + \
+                            (curLine[:-1]).lower()
                     else:
-                        editedText = editedText + ", " + (lines[i]).lower()
+                        editedText = editedText + ", " + (curLine).lower()
 
         text_frame = shape.text_frame
         text_frame.clear()  # removes all paragraphs except for one empty one
