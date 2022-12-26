@@ -56,10 +56,13 @@ def main():
                 print('ERROR STOPPING SCRIPT: Failed to save file: ' + '\'edited/' + filename.split('.')
                       [0] + '.pptx\' ' + 'please make sure that all instances of powerpoint are closed')
                 input("PRESS ENTER TO CLOSE TERMINAL")
-                sys.exit()
 
     input("PRESS ENTER TO CLOSE TERMINAL")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except BaseException as e:
+        print('ERROR - Something unexpected went wrong -- ' + str(e))
+        input("PRESS ENTER TO CLOSE TERMINAL")

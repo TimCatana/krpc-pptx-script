@@ -50,7 +50,9 @@ def editText(filename, shape):
             else:
                 # print("else == 0 lines: " +
                 #       str(curLine) + "edited text: " + str(editedText) + "\n\n")
-                curLine = curLine[0].lower() + curLine[1:]
+
+                if (curLine[0] != None):
+                    curLine = curLine[0].lower() + curLine[1:]
 
                 if (editedText[-1] in [".", ",", "!", "?", ":", ";"]):
                     if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
