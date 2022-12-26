@@ -6,3 +6,5 @@ output/
 !test_slides/*
 
 helpers/__pycache__
+
+error-log.txt

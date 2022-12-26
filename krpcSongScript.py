@@ -61,4 +61,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+
+    try:
+        main()
+    except BaseException as error:
+        f = open("error-log.txt", "a")
+        f.write(str(error))
+        f.close()
