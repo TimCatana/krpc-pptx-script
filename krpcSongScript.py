@@ -46,13 +46,17 @@ def main():
 
         for shape in slide.shapes:
           editShape(filename, shape, textValuesDict)
-    
+
       try:
-        prs.save('edited/' + filename.split('.')[0] + '.pptx')
+        prs.save('edited/' + filename.rsplit('.', 1)[0] + '.pptx')
         print("Finished Successfully")
       except BaseException as error:
-        print('ERROR STOPPING SCRIPT: Failed to save file: ' + '\'edited/' + filename.split('.')[0] + '.pptx\' ' + 'please make sure that all instances of powerpoint are closed') 
+        print('ERROR STOPPING SCRIPT: Failed to save file: ' + '\'edited/' + filename.split('.')[0] + '.pptx\' ' + 'please make sure that all instances of powerpoint are closed')
+        input("PRESS ENTER TO CLOSE TERMINAL") 
         sys.exit()
+
+      input("PRESS ENTER TO CLOSE TERMINAL") 
+      
 
 if __name__ == "__main__":
   main()

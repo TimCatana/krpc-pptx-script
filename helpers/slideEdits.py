@@ -50,20 +50,21 @@ def editText(filename, shape):
             else:
                 # print("else == 0 lines: " +
                 #       str(curLine) + "edited text: " + str(editedText) + "\n\n")
+                curLine = curLine[0].lower() + curLine[1:]
 
                 if (editedText[-1] in [".", ",", "!", "?", ":", ";"]):
                     if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
                         editedText = editedText[:-1] + \
-                            ", " + (curLine[:-1]).lower()
+                            ", " + curLine[:-1]
                     else:
                         editedText = editedText[:-1] + \
-                            ", " + (curLine).lower()
+                            ", " + curLine
                 else:
                     if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
                         editedText = editedText + ", " + \
-                            (curLine[:-1]).lower()
+                            curLine[:-1]
                     else:
-                        editedText = editedText + ", " + (curLine).lower()
+                        editedText = editedText + ", " + curLine
 
         text_frame = shape.text_frame
         text_frame.clear()  # removes all paragraphs except for one empty one
