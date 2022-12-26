@@ -51,10 +51,10 @@ def editText(filename, shape):
                 # print("else == 0 lines: " +
                 #       str(curLine) + "edited text: " + str(editedText) + "\n\n")
 
-                    try:
-                      curLine = curLine[0].lower() + curLine[1:]
-                    except BaseException as error:
-                      print("WARNING - failed to make first letter lowercase")
+                try:
+                    curLine = curLine[0].lower() + curLine[1:]
+                except BaseException as error:
+                    print("WARNING - failed to make first letter lowercase")
 
                 if (editedText[-1] in [".", ",", "!", "?", ":", ";"]):
                     if (curLine[-1] in [".", ",", "!", "?", ":", ";"]):
