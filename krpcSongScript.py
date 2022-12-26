@@ -65,6 +65,6 @@ if __name__ == "__main__":
     try:
         main()
     except BaseException as error:
-        f = open("error-log.txt", "a")
+        f = open("error-log.txt", "w")
         f.write(str(error))
         f.close()
