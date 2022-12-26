@@ -8,8 +8,20 @@ import csv
 def readCSVFile(filename):
     textValuesDict = {}
 
-    with open(filename) as csvFile:
-        csvReader = csv.reader(csvFile, delimiter=',')
+    try:
+        csvFile = open(filename)
+    except:
+        print("ERROR: you forgot the input.csv file")
+        input("PRESS ENTER TO CLOSE TERMINAL")
+
+    with csvFile:
+
+        try:
+            csvReader = csv.reader(csvFile, delimiter=',')
+        except:
+            print("ERROR: failed to parse csv file... that's all I know")
+            input("PRESS ENTER TO CLOSE TERMINAL")
+
         for row in csvReader:
 
             try:
@@ -19,7 +31,7 @@ def readCSVFile(filename):
                 print(
                     "ERROR: input.csv should be in form 'fontSize,fontName,fontBold(y or n),fontItalic (y or n)")
                 input("PRESS ENTER TO CLOSE TERMINAL")
-            
+
             try:
                 row[1]
             except IndexError:
@@ -27,7 +39,7 @@ def readCSVFile(filename):
                 print(
                     "ERROR: input.csv should be in form 'fontSize(number),fontName,fontBold(y or n),fontItalic (y or n)")
                 input("PRESS ENTER TO CLOSE TERMINAL")
-            
+
             try:
                 row[2]
             except IndexError:
