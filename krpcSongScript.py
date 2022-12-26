@@ -61,8 +61,4 @@ def main():
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except BaseException as e:
-        print('ERROR - Something unexpected went wrong -- ' + str(e))
-        input("PRESS ENTER TO CLOSE TERMINAL")
+    main()
