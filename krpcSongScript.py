@@ -50,8 +50,9 @@ def main():
                     editShape(filename, shape, textValuesDict)
 
             try:
-                prs.save('edited/' + filename.rsplit('.', 1)[0] + '.pptx')
-                print("Finished Successfully")
+                writeFile = 'edited/' + filename.rsplit('.', 1)[0] + '.pptx'
+                prs.save(writeFile)
+                print("FINISHED --- " + writeFile + " --- Successfully")
             except BaseException as error:
                 print('ERROR STOPPING SCRIPT: Failed to save file: ' + '\'edited/' + filename.split('.')
                       [0] + '.pptx\' ' + 'please make sure that all instances of powerpoint are closed')
